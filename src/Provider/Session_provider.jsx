@@ -21,7 +21,7 @@ export const useWikiPro = () => {
 function SessionProvider({ children }) {
   const [sessionId, setSessionId] = useState();
   const [sessionStatus, setSessionStatus] = useState();
-  const [wiki, setWiki] = useState([]);
+  const [wiki, setWiki] = useState([null, null]);
   return (
     <sessionIdPro.Provider value={sessionId}>
       <sessionIdProUpdate.Provider value={setSessionId}>
