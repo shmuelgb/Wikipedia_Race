@@ -1,0 +1,32 @@
+!!!----Homepage>>>>>>>>>>>>>>>>>
+
+- small explanation about the game.
+- button: start new game
+- button: join game
+
+!!!----Game-Settings>>>>>>>>>>>>>>>>>
+
+/case new game:
+-name input
+-start button
+
+/case join game
+
+- session id input
+-start button
+
+!!!----Waiting-room>>>>>>>>>>>>>>>>>
+
+- explanation
+
+!!!----Game>>>>>>>>>>>>>>>>>
+
+- wiki Iframe
+- Counter
+- Win button
+- wining conformation input
+- wining conformation submit button
+
+!!!----wining page>>>>>>>>>>>>>>>>>
+
+- Nice looking page for winner and loser
