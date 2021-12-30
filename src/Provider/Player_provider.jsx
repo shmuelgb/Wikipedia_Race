@@ -2,25 +2,25 @@ import React, { useState, createContext, useContext } from "react";
 
 const playersPro = createContext();
 const playersProUpdate = createContext();
-const usePlayersPro = () => {
+export const usePlayersPro = () => {
   return [useContext(playersPro), useContext(playersProUpdate)];
 };
 
 const winnerPro = createContext();
 const winnerProUpdate = createContext();
-const useWinnerPro = () => {
+export const useWinnerPro = () => {
   return [useContext(winnerPro), useContext(winnerProUpdate)];
 };
 
 const currentPlayerPro = createContext();
 const currentPlayerProUpdate = createContext();
-const useCurrentPlayerPro = () => {
+export const useCurrentPlayerPro = () => {
   return [useContext(currentPlayerPro), useContext(currentPlayerProUpdate)];
 };
 
 const isNewGamePro = createContext();
 const isNewGameProUpdate = createContext();
-const useIsNewGamePro = () => {
+export const useIsNewGamePro = () => {
   return [useContext(isNewGamePro), useContext(isNewGameProUpdate)];
 };
 

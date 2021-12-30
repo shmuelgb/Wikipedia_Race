@@ -1,20 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useSessionIdPro } from "../../Provider/Session.provider";
+import { useIsNewGamePro } from "../../Provider/Player_provider";
 
 function Homepage() {
-  const [ses, setSes] = useSessionIdPro();
+  const [isNewGame, setIsNewGame] = useIsNewGamePro();
+
+  const handleNewGame = (boolean) => {
+    setIsNewGame(boolean);
+  };
+
   return (
     <div>
       Homepage
-      {ses}
-      <button onClick={() => setSes("new val")}>press</button>
-      <Link to="/game_settings" onClick={() => console.log("!")}>
+      <Link to="/game_settings" onClick={() => handleNewGame(true)}>
         Start New Game
       </Link>
       <br />
-      <Link to="/game_settings" onClick={() => console.log("!")}>
+      <Link to="/game_settings" onClick={() => handleNewGame(false)}>
         Join Existing Game
       </Link>
     </div>

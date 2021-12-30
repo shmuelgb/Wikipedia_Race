@@ -14,7 +14,7 @@ export const useSessionStatusPro = () => {
 
 const wikiPro = createContext();
 const wikiProUpdate = createContext();
-const useWikiPro = () => {
+export const useWikiPro = () => {
   return [useContext(wikiPro), useContext(wikiProUpdate)];
 };
 
