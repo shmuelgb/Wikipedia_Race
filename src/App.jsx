@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "./Components/Homepage/Homepage";
@@ -9,7 +9,7 @@ import WiningPage from "./Components/WiningPage/WiningPage";
 
 //
 import SessionProvider from "./Provider/Session_provider";
-import Player_provider from "./Provider/Player_provider";
+import PlayerProvider from "./Provider/Player_provider";
 //
 function App() {
   // const [sessionId, setSessionId] = useState();
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <SessionProvider>
-      <Player_provider>
+      <PlayerProvider>
         <div className="App">
           <Router>
             <Route path="/" exact component={Homepage} />
@@ -32,7 +32,7 @@ function App() {
             <Route path="/wining_page" exact component={WiningPage} />
           </Router>
         </div>
-      </Player_provider>
+      </PlayerProvider>
     </SessionProvider>
   );
 }

@@ -25,26 +25,22 @@ export default function GameSettings() {
   //   const [isNewGame, setIsNewGame] = useIsNewGamePro();
 
   //| FUNCTIONS===>
+
   useEffect(() => {
+    const getSuggestions = async (term, identifier) => {
+      try {
+        let { data } = await wikiSearch.get(term);
+        data = data.query.search;
+        const resultsCopy = [...results];
+        resultsCopy[identifier] = data;
+        setResults(resultsCopy);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     if (originTerm) getSuggestions(originTerm, 0);
-  }, [originTerm]);
-
-  useEffect(() => {
     if (targetTerm) getSuggestions(targetTerm, 1);
-  }, [targetTerm]);
-
-  // Call Wikipedia API to get list of results
-  const getSuggestions = async (term, identifier) => {
-    try {
-      let { data } = await wikiSearch.get(term);
-      data = data.query.search;
-      const resultsCopy = [...results];
-      resultsCopy[identifier] = data;
-      setResults(resultsCopy);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [originTerm, targetTerm, results]);
 
   //Render results for user to choose from
   const renderSuggestions = (identifier) => {
@@ -61,13 +57,24 @@ export default function GameSettings() {
   const setWikiValues = (item, identifier) => {
     const wikiCopy = [...wiki];
     if (identifier === 0) {
+      setOriginTerm(null);
       wikiCopy[0] = item;
     } else {
+      setTargetTerm(null);
       wikiCopy[1] = item;
     }
     setWiki(wikiCopy);
     console.log("wiki", wiki);
   };
+
+  //| LIFE CYCLE===>
+  //   useEffect(() => {
+  //     if (originTerm) getSuggestions(originTerm, 0);
+  //   }, [originTerm, getSuggestions]);
+
+  //   useEffect(() => {
+  //     if (targetTerm) getSuggestions(targetTerm, 1);
+  //   }, [targetTerm, getSuggestions]);
 
   //Start a game
   const handleStart = (gameType) => {
@@ -77,6 +84,11 @@ export default function GameSettings() {
     } else {
       joinGame();
     }
+    if (false) handleWarnings();
+  };
+
+  const handleWarnings = () => {
+    console.log(sessionId, sessionStatus);
   };
 
   //Start a new game
@@ -111,6 +123,7 @@ export default function GameSettings() {
           id: 2,
         },
       });
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
