@@ -1,9 +1,9 @@
 import React, { useState, createContext, useContext } from "react";
 
-const playersPro = createContext();
-const playersProUpdate = createContext();
-export const usePlayersPro = () => {
-  return [useContext(playersPro), useContext(playersProUpdate)];
+const otherPlayerPro = createContext();
+const otherPlayerProUpdate = createContext();
+export const useOtherPlayerPro = () => {
+  return [useContext(otherPlayerPro), useContext(otherPlayerProUpdate)];
 };
 
 const winnerPro = createContext();
@@ -25,14 +25,14 @@ export const useIsNewGamePro = () => {
 };
 
 export default function Player_provider({ children }) {
-  const [players, setPlayers] = useState([]);
+  const [otherPlayer, setOtherPlayer] = useState([]);
   const [winner, setWinner] = useState();
   const [currentPlayer, SetCurrentPlayer] = useState();
   const [isNewGame, setIsNewGame] = useState();
   return (
     <div>
-      <playersPro.Provider value={players}>
-        <playersProUpdate.Provider value={setPlayers}>
+      <otherPlayerPro.Provider value={otherPlayer}>
+        <otherPlayerProUpdate.Provider value={setOtherPlayer}>
           <winnerPro.Provider value={winner}>
             <winnerProUpdate.Provider value={setWinner}>
               <currentPlayerPro.Provider value={currentPlayer}>
@@ -46,8 +46,8 @@ export default function Player_provider({ children }) {
               </currentPlayerPro.Provider>
             </winnerProUpdate.Provider>
           </winnerPro.Provider>
-        </playersProUpdate.Provider>
-      </playersPro.Provider>
+        </otherPlayerProUpdate.Provider>
+      </otherPlayerPro.Provider>
     </div>
   );
 }
