@@ -7,19 +7,10 @@ import WaitingRoom from "./Components/WaitingRoom/WaitingRoom";
 import Game from "./Components/Game/Game";
 import WiningPage from "./Components/WiningPage/WiningPage";
 
-//
 import SessionProvider from "./Provider/Session_provider";
 import PlayerProvider from "./Provider/Player_provider";
-//
-function App() {
-  // const [sessionId, setSessionId] = useState();
-  // const [sessionStatus, setSessionStatus] = useState();
-  // const [wiki, setWiki] = useState([]);
-  // const [players, setPlayers] = useState([]);
-  // const [winner, setWinner] = useState();
-  // const [currentPlayer, SetCurrentPlayer] = useState();
-  // const [isNewGame, setIsNewGame] = useState();
 
+function App() {
   return (
     <SessionProvider>
       <PlayerProvider>

@@ -4,6 +4,7 @@ import wikiSearch from "../../Axios/wikiSearch";
 import {
   //   useIsNewGamePro,
   useCurrentPlayerPro,
+  useWinnerPro,
 } from "../../Provider/Player_provider";
 import {
   useWikiPro,
@@ -16,6 +17,8 @@ export default function GameSettings() {
   const [sessionId, setSessionId] = useSessionIdPro();
   const [sessionStatus, setSessionStatus] = useSessionStatusPro();
   const [currentPlayer, SetCurrentPlayer] = useCurrentPlayerPro();
+  const [winner, setWinner] = useWinnerPro();
+
   const [wiki, setWiki] = useWikiPro();
   const [originTerm, setOriginTerm] = useState("");
   const [targetTerm, setTargetTerm] = useState("");
@@ -38,8 +41,8 @@ export default function GameSettings() {
         console.log(err);
       }
     };
-    if (originTerm) getSuggestions(originTerm, 0);
-    if (targetTerm) getSuggestions(targetTerm, 1);
+    if (originTerm.length > 0) getSuggestions(originTerm, 0);
+    if (targetTerm.length > 0) getSuggestions(targetTerm, 1);
   }, [originTerm, targetTerm, results]);
 
   //Render results for user to choose from
@@ -57,10 +60,10 @@ export default function GameSettings() {
   const setWikiValues = (item, identifier) => {
     const wikiCopy = [...wiki];
     if (identifier === 0) {
-      setOriginTerm(null);
+      setOriginTerm("");
       wikiCopy[0] = item;
     } else {
-      setTargetTerm(null);
+      setTargetTerm("");
       wikiCopy[1] = item;
     }
     setWiki(wikiCopy);
@@ -88,7 +91,7 @@ export default function GameSettings() {
   };
 
   const handleWarnings = () => {
-    console.log(sessionId, sessionStatus);
+    console.log(sessionId, sessionStatus, winner);
   };
 
   //Start a new game
@@ -97,7 +100,7 @@ export default function GameSettings() {
       const { data } = await dataBase.post("", {
         status: "waiting",
         player1: {
-          name: currentPlayer,
+          name: name,
           clicks: 0,
           id: 1,
         },
@@ -105,8 +108,9 @@ export default function GameSettings() {
         winner: null,
       });
       console.log(data);
-      setSessionId(data.sessionId);
+      setSessionId(data.id);
       setSessionStatus(data.status);
+      syncSession(data.id, 1);
     } catch (err) {
       console.log(err);
     }
@@ -123,9 +127,28 @@ export default function GameSettings() {
           id: 2,
         },
       });
+      syncSession(idToJoin, 2);
       console.log(data);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const syncSession = async (id, playerId) => {
+    console.log(id);
+    const intervalId = setInterval(async () => {
+      try {
+        const { data } = await dataBase.get(`/${id}`);
+        setSessionStatus(data.status);
+        SetCurrentPlayer(data[`player${playerId}`]);
+        setWinner(data.winner);
+        console.log("interval", data);
+      } catch (err) {
+        console.log(err);
+      }
+    }, 5000);
+    if (sessionStatus === "finished") {
+      clearInterval(intervalId);
     }
   };
 

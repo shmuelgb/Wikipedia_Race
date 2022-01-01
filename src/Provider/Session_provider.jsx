@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
 
-const sessionIdPro = createContext();
+export const sessionIdPro = createContext();
 const sessionIdProUpdate = createContext();
 export const useSessionIdPro = () => {
   return [useContext(sessionIdPro), useContext(sessionIdProUpdate)];
