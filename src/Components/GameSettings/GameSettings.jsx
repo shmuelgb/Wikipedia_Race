@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import dataBase from "../../Axios/dataBase";
 import wikiSearch from "../../Axios/wikiSearch";
 import {
@@ -178,7 +179,11 @@ export default function GameSettings() {
           onChange={(e) => setTargetTerm(e.target.value)}
         />
         {results[1] && renderSuggestions(1)}
-        <button onClick={() => handleStart("new")}>Go!</button>
+        {/* <button onClick={() => handleStart("new")}>Go!</button> */}
+        <br />
+        <Link onClick={() => handleStart("new")} to="/waiting_room">
+          Go!
+        </Link>
       </div>
       <div className="join-game">
         <h1>To Join a game</h1>
