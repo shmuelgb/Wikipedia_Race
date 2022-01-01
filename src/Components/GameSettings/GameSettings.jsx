@@ -5,6 +5,7 @@ import {
   //   useIsNewGamePro,
   useCurrentPlayerPro,
   useWinnerPro,
+  useOtherPlayerPro,
 } from "../../Provider/Player_provider";
 import {
   useWikiPro,
@@ -16,7 +17,8 @@ export default function GameSettings() {
   //| STATE===>
   const [sessionId, setSessionId] = useSessionIdPro();
   const [sessionStatus, setSessionStatus] = useSessionStatusPro();
-  const [currentPlayer, SetCurrentPlayer] = useCurrentPlayerPro();
+  const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
+  const [otherPlayer, setOtherPlayer] = useOtherPlayerPro();
   const [winner, setWinner] = useWinnerPro();
 
   const [wiki, setWiki] = useWikiPro();
@@ -81,7 +83,7 @@ export default function GameSettings() {
 
   //Start a game
   const handleStart = (gameType) => {
-    SetCurrentPlayer(name);
+    setCurrentPlayer(name);
     if (gameType === "new") {
       startNewGame();
     } else {
@@ -91,7 +93,7 @@ export default function GameSettings() {
   };
 
   const handleWarnings = () => {
-    console.log(sessionId, sessionStatus, winner);
+    console.log(sessionId, sessionStatus, winner, currentPlayer, otherPlayer);
   };
 
   //Start a new game
@@ -110,7 +112,7 @@ export default function GameSettings() {
       console.log(data);
       setSessionId(data.id);
       setSessionStatus(data.status);
-      syncSession(data.id, 1);
+      syncSession(data.id, 1, 2);
     } catch (err) {
       console.log(err);
     }
@@ -122,25 +124,25 @@ export default function GameSettings() {
       const { data } = await dataBase.put(idToJoin, {
         status: "active",
         player2: {
-          name: currentPlayer,
+          name: name,
           clicks: 0,
           id: 2,
         },
       });
-      syncSession(idToJoin, 2);
+      syncSession(idToJoin, 2, 1);
       console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const syncSession = async (id, playerId) => {
-    console.log(id);
+  const syncSession = async (id, thisPlayerId, otherPlayerId) => {
     const intervalId = setInterval(async () => {
       try {
         const { data } = await dataBase.get(`/${id}`);
         setSessionStatus(data.status);
-        SetCurrentPlayer(data[`player${playerId}`]);
+        setCurrentPlayer(data[`player${thisPlayerId}`]);
+        setOtherPlayer(data[`player${otherPlayerId}`]);
         setWinner(data.winner);
         console.log("interval", data);
       } catch (err) {
