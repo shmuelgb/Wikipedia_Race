@@ -45,15 +45,17 @@ export default function Game() {
     <div>
       Game
       <div>
-        <Iframe
-          url={`http://en.wikipedia.org/?curid=${wiki[0].pageid}`}
-          width="100%"
-          height="450px"
-          id="myId"
-          className="my-class-name"
-          display="initial"
-          position="relative"
-        />
+        {wiki && (
+          <Iframe
+            url={`http://en.wikipedia.org/?curid=${wiki[0].pageid}`}
+            width="100%"
+            height="450px"
+            id="myId"
+            className="my-class-name"
+            display="initial"
+            position="relative"
+          />
+        )}
         <button onClick={() => setClaimWin(true)}>I Won!</button>
         {claimWin && (
           <input
