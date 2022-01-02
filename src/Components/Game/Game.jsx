@@ -88,7 +88,7 @@ export default function Game() {
       <div>
         {wiki[0] && (
           <Iframe
-            url={`http://${language}.wikipedia.org/?curid=${wiki[0].pageid}`}
+            url={`https://${language}.wikipedia.org/?curid=${wiki[0].pageid}`}
             width="100%"
             height="450px"
             id="myId"
