@@ -12,23 +12,26 @@ import SignIn from "./Components/SignIn";
 
 import SessionProvider from "./Provider/Session_provider";
 import PlayerProvider from "./Provider/Player_provider";
+import UserProvider from "./Provider/User_provider";
 
 function App() {
   return (
     <SessionProvider>
       <PlayerProvider>
-        <div className="App">
-          <Router>
-            <Redirect />
-            <Route path="/" exact component={Homepage} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/login" component={Login} />
-            <Route path="/game_settings" exact component={GameSettings} />
-            <Route path="/waiting_room" exact component={WaitingRoom} />
-            <Route path="/game" exact component={Game} />
-            <Route path="/wining_page" exact component={WiningPage} />
-          </Router>
-        </div>
+        <UserProvider>
+          <div className="App">
+            <Router>
+              <Redirect />
+              <Route path="/" exact component={Homepage} />
+              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/login" component={Login} />
+              <Route path="/game_settings" exact component={GameSettings} />
+              <Route path="/waiting_room" exact component={WaitingRoom} />
+              <Route path="/game" exact component={Game} />
+              <Route path="/wining_page" exact component={WiningPage} />
+            </Router>
+          </div>
+        </UserProvider>
       </PlayerProvider>
     </SessionProvider>
   );

@@ -7,12 +7,14 @@ import {
   signInWithFacebook,
 } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useUserPro } from "../Provider/User_provider";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth);
   const history = useHistory();
+  const [userPro, setUserPro] = useUserPro();
 
   useEffect(() => {
     if (loading) {
@@ -22,6 +24,25 @@ function Login() {
     if (user) history.replace("/");
     //TODO:  if user is logged in - update login context and redirect to landing page
   }, [user, loading, history]);
+
+  const handleSignInEmailPassword = async () => {
+    const user = await signInWithEmailAndPassword(email, password);
+    console.log("user", user);
+    setUserPro(user);
+  };
+
+  const handleSignInGoogle = async () => {
+    const user = await signInWithGoogle();
+    console.log("user", user);
+    setUserPro(user);
+  };
+
+  const handleSignInFacebook = async () => {
+    const user = await signInWithFacebook();
+    console.log("user", user);
+    setUserPro(user);
+    if (0 > 1) console.log(userPro);
+  };
 
   return (
     <div className="login">
@@ -42,17 +63,20 @@ function Login() {
         />
         <button
           className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}
+          onClick={() => handleSignInEmailPassword()}
         >
           Login
         </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
+        <button
+          className="login__btn login__google"
+          onClick={() => handleSignInGoogle()}
+        >
           Login with Google
         </button>
 
         <div
           className="login__btn login__facebook"
-          onClick={signInWithFacebook}
+          onClick={() => handleSignInFacebook()}
         >
           Login with Facebook
         </div>

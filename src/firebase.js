@@ -47,6 +47,8 @@ const signInWithGoogle = async () => {
 
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
+
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -67,6 +69,8 @@ const signInWithFacebook = async () => {
 
     localStorage.setItem("token", accessToken);
     localStorage.setItem("user", JSON.stringify(user));
+
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -84,6 +88,7 @@ const signInWithEmailAndPassword = async (email, password) => {
     );
     const user = userCredential.user;
     localStorage.setItem("user", JSON.stringify(user));
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -106,6 +111,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     //     authProvider: 'local',
     //     email,
     // });
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);

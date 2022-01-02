@@ -7,6 +7,7 @@ import {
   signInWithGoogle,
   signInWithFacebook,
 } from "../firebase";
+import { useUserPro } from "../Provider/User_provider";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -14,10 +15,13 @@ function SignIn() {
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const history = useHistory();
+  const [userPro, setUserPro] = useUserPro();
 
-  const register = () => {
+  const register = async () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+    const user = await registerWithEmailAndPassword(name, email, password);
+    console.log("user", user);
+    setUserPro(user);
     if (0 > 1) handleWarnings();
   };
 
@@ -27,7 +31,7 @@ function SignIn() {
   }, [user, loading, history]);
 
   const handleWarnings = () => {
-    console.log(error);
+    console.log(error, userPro);
   };
 
   return (
