@@ -14,6 +14,7 @@ import {
 import dataBase from "../../Axios/dataBase";
 
 export default function Game() {
+  //context Hooks==>
   const [wiki, setWiki] = useWikiPro();
   const [winner, setWinner] = useWinnerPro();
   const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
@@ -21,9 +22,12 @@ export default function Game() {
   const [language, setLanguage] = useLanguagePro();
   const [sessionId, setSessionId] = useSessionIdPro();
 
+  //state==>
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState("");
 
+  //functions==>
+  //verify if the game is over
   const confirmWin = () => {
     const targetSnippet = wiki[1].snippet;
     let token = winConformation.split(" ");
@@ -42,6 +46,7 @@ export default function Game() {
     if (0 > 1) handleWarnings();
   };
 
+  //update the winner in the database
   const updateWinner = async () => {
     try {
       const { data } = await dataBase.put(`${sessionId}`, {
@@ -54,25 +59,7 @@ export default function Game() {
     }
   };
 
-  //   const confirmWin = () => {
-  //     const targetSnippet = wiki[1].snippet;
-  //     let token = winConformation.split(" ");
-  //     const tokens = [];
-  //     tokens.push(token[token.length - 1]);
-  //     tokens.push(token[token.length - 2]);
-  //     tokens.push(token[token.length - 3]);
-  //     tokens.push(token[token.length - 4]);
-  //     console.log("tokens", tokens);
-  //     console.log("targetSnippet", targetSnippet);
-
-  //     if (tokens.every((token) => targetSnippet.includes(token))) {
-  //       setWinner(currentPlayer);
-  //       setSessionStatus("finished");
-  //       console.log("winner", winner);
-  //     } else console.log("try again");
-  //     if (0 > 1) handleWarnings();
-  //   };
-
+  //handle warnings
   const handleWarnings = () => {
     setWiki(wiki);
     setCurrentPlayer(currentPlayer);

@@ -30,25 +30,44 @@ export default function GameSettings() {
   const [name, setName] = useState("");
   const [idToJoin, setIdToJoin] = useState("");
   //   const [isNewGame, setIsNewGame] = useIsNewGamePro();
+  const [timersId, setTimersId] = useState([]);
 
   //| FUNCTIONS===>
 
+  const searchOrigin = (e) => {
+    setOriginTerm(e.target.value);
+    const timerId = setTimeout(() => {
+      getSuggestions(e.target.value, 0);
+    }, 500);
+    setTimersId([...timersId, timerId]);
+  };
+
+  const searchTarget = (e) => {
+    setTargetTerm(e.target.value);
+    const timerId = setTimeout(() => {
+      getSuggestions(e.target.value, 1);
+    }, 1000);
+    setTimersId([...timersId, timerId]);
+  };
+
+  const getSuggestions = async (term, identifier) => {
+    const wikiSearch = language === "en" ? EnWikiSearch : HeWikiSearch;
+    try {
+      let { data } = await wikiSearch.get(term);
+      data = data.query.search;
+      const resultsCopy = [...results];
+      resultsCopy[identifier] = data;
+      setResults(resultsCopy);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    const getSuggestions = async (term, identifier) => {
-      const wikiSearch = language === "en" ? EnWikiSearch : HeWikiSearch;
-      try {
-        let { data } = await wikiSearch.get(term);
-        data = data.query.search;
-        const resultsCopy = [...results];
-        resultsCopy[identifier] = data;
-        setResults(resultsCopy);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (originTerm.length > 0) getSuggestions(originTerm, 0);
-    if (targetTerm.length > 0) getSuggestions(targetTerm, 1);
-  }, [originTerm, targetTerm, results, language]);
+    timersId.forEach((timerId, i) => {
+      if (i !== timersId.length - 1) clearTimeout(timerId);
+    });
+  }, [originTerm, targetTerm, timersId]);
 
   //Render results for user to choose from
   const renderSuggestions = (identifier) => {
@@ -175,14 +194,16 @@ export default function GameSettings() {
         <input
           type="text"
           value={originTerm}
-          onChange={(e) => setOriginTerm(e.target.value)}
+          onChange={searchOrigin}
+          //   onChange={(e) => setOriginTerm(e.target.value)}
         />
         {results[0] && renderSuggestions(0)}
         <h2>Choose The target page:</h2>
         <input
           type="text"
           value={targetTerm}
-          onChange={(e) => setTargetTerm(e.target.value)}
+          onChange={searchTarget}
+          //   onChange={(e) => setTargetTerm(e.target.value)}
         />
         {results[1] && renderSuggestions(1)}
         <button onClick={() => handleStart("new")}>Go!</button>
