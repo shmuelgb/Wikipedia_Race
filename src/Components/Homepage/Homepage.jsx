@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { useUserPro } from "../../Provider/User_provider";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 
