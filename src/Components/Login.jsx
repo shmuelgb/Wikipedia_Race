@@ -4,7 +4,6 @@ import {
   auth,
   signInWithEmailAndPassword,
   signInWithGoogle,
-  signInWithFacebook,
 } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useUserPro } from "../Provider/User_provider";
@@ -21,27 +20,20 @@ function Login() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) history.replace("/");
+    if (user) history.push("/");
     //TODO:  if user is logged in - update login context and redirect to landing page
   }, [user, loading, history]);
 
   const handleSignInEmailPassword = async () => {
     const user = await signInWithEmailAndPassword(email, password);
-    console.log("user", user);
     setUserPro(user);
+    console.log("user", userPro);
   };
 
   const handleSignInGoogle = async () => {
     const user = await signInWithGoogle();
     console.log("user", user);
     setUserPro(user);
-  };
-
-  const handleSignInFacebook = async () => {
-    const user = await signInWithFacebook();
-    console.log("user", user);
-    setUserPro(user);
-    if (0 > 1) console.log(userPro);
   };
 
   return (
@@ -74,12 +66,6 @@ function Login() {
           Login with Google
         </button>
 
-        <div
-          className="login__btn login__facebook"
-          onClick={() => handleSignInFacebook()}
-        >
-          Login with Facebook
-        </div>
         <div>{/* <Link to="/reset">Forgot Password</Link> */}</div>
         <div>
           Don't have an account? <Link to="/signin">Register</Link> now.

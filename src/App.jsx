@@ -9,6 +9,7 @@ import WiningPage from "./Components/WiningPage/WiningPage";
 import Redirect from "./Components/Redirect";
 import Login from "./Components/Login";
 import SignIn from "./Components/SignIn";
+import Header from "./Components/Header/Header";
 
 import SessionProvider from "./Provider/Session_provider";
 import PlayerProvider from "./Provider/Player_provider";
@@ -22,6 +23,7 @@ function App() {
           <div className="App">
             <Router>
               <Redirect />
+              <Header />
               <Route path="/" exact component={Homepage} />
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/login" component={Login} />

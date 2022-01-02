@@ -5,9 +5,7 @@ import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-  signInWithFacebook,
 } from "../firebase";
-import { useUserPro } from "../Provider/User_provider";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -15,23 +13,23 @@ function SignIn() {
   const [name, setName] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const history = useHistory();
-  const [userPro, setUserPro] = useUserPro();
 
   const register = async () => {
     if (!name) alert("Please enter name");
     const user = await registerWithEmailAndPassword(name, email, password);
     console.log("user", user);
-    setUserPro(user);
+    // setUserPro(user);
     if (0 > 1) handleWarnings();
   };
 
   useEffect(() => {
+    console.log("user", user);
     if (loading) return;
-    if (user) history.replace("/");
+    if (user) history.push("/");
   }, [user, loading, history]);
 
   const handleWarnings = () => {
-    console.log(error, userPro);
+    console.log(error);
   };
 
   return (
@@ -67,15 +65,9 @@ function SignIn() {
         >
           Register with Google
         </button>
-        <button
-          className="register__btn register__facebook"
-          onClick={signInWithFacebook}
-        >
-          Register with Google
-        </button>
 
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </div>

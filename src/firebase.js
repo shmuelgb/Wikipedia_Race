@@ -11,7 +11,6 @@ import {
   signInWithEmailAndPassword as signInWithEmailAndPasswordAuth,
   signOut,
   GoogleAuthProvider,
-  FacebookAuthProvider,
   // firestore,
 } from "firebase/auth";
 // import { useContext } from "react";
@@ -57,25 +56,6 @@ const signInWithGoogle = async () => {
 };
 
 //TODO: handle errors
-
-const facebookProvider = new FacebookAuthProvider();
-const signInWithFacebook = async () => {
-  try {
-    const result = await signInWithPopup(auth, facebookProvider);
-    const credential = FacebookAuthProvider.credentialFromResult(result);
-    const accessToken = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-
-    localStorage.setItem("token", accessToken);
-    localStorage.setItem("user", JSON.stringify(user));
-
-    return user;
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
 
 const signInWithEmailAndPassword = async (email, password) => {
   try {
@@ -139,7 +119,6 @@ export {
   auth,
   db,
   signInWithGoogle,
-  signInWithFacebook,
   signInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordResetEmail,
