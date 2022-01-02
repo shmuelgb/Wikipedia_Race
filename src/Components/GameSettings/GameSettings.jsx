@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import dataBase from "../../Axios/dataBase";
-import wikiSearch from "../../Axios/wikiSearch";
+import { HeWikiSearch, EnWikiSearch } from "../../Axios/wikiSearch";
 import {
   //   useIsNewGamePro,
   useCurrentPlayerPro,
@@ -12,6 +12,7 @@ import {
   useWikiPro,
   useSessionIdPro,
   useSessionStatusPro,
+  useLanguagePro,
 } from "../../Provider/Session_provider";
 
 export default function GameSettings() {
@@ -21,6 +22,7 @@ export default function GameSettings() {
   const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
   const [otherPlayer, setOtherPlayer] = useOtherPlayerPro();
   const [winner, setWinner] = useWinnerPro();
+  const [language, setLanguage] = useLanguagePro();
 
   const [wiki, setWiki] = useWikiPro();
   const [originTerm, setOriginTerm] = useState("");
@@ -34,6 +36,7 @@ export default function GameSettings() {
 
   useEffect(() => {
     const getSuggestions = async (term, identifier) => {
+      const wikiSearch = language === "en" ? EnWikiSearch : HeWikiSearch;
       try {
         let { data } = await wikiSearch.get(term);
         data = data.query.search;
@@ -46,7 +49,7 @@ export default function GameSettings() {
     };
     if (originTerm.length > 0) getSuggestions(originTerm, 0);
     if (targetTerm.length > 0) getSuggestions(targetTerm, 1);
-  }, [originTerm, targetTerm, results]);
+  }, [originTerm, targetTerm, results, language]);
 
   //Render results for user to choose from
   const renderSuggestions = (identifier) => {
@@ -73,16 +76,6 @@ export default function GameSettings() {
     console.log("wiki", wiki);
   };
 
-  //| LIFE CYCLE===>
-  //   useEffect(() => {
-  //     if (originTerm) getSuggestions(originTerm, 0);
-  //   }, [originTerm, getSuggestions]);
-
-  //   useEffect(() => {
-  //     if (targetTerm) getSuggestions(targetTerm, 1);
-  //   }, [targetTerm, getSuggestions]);
-
-  //Start a game
   const handleStart = (gameType) => {
     setCurrentPlayer(name);
     if (gameType === "new") {
@@ -95,6 +88,7 @@ export default function GameSettings() {
 
   const handleWarnings = () => {
     console.log(sessionId, sessionStatus, winner, currentPlayer, otherPlayer);
+    setLanguage("en");
   };
 
   //Start a new game
@@ -156,6 +150,10 @@ export default function GameSettings() {
     }
   };
 
+  const handleSetLanguage = (e) => {
+    setLanguage(e.target.value);
+  };
+
   return (
     <div>
       <div className="new-game">
@@ -167,6 +165,11 @@ export default function GameSettings() {
           onChange={(e) => setName(e.target.value)}
         />
         <h2>Choose the Wikipedia page you want to start from:</h2>
+        <label htmlFor="language">Choose language:</label>
+        <select name="language" onClick={handleSetLanguage}>
+          <option value="he">Hebrew</option>
+          <option value="en">English</option>
+        </select>
         <input
           type="text"
           value={originTerm}

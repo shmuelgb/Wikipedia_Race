@@ -4,6 +4,7 @@ import Iframe from "react-iframe";
 import {
   useWikiPro,
   useSessionStatusPro,
+  useLanguagePro,
 } from "../../Provider/Session_provider";
 import {
   useWinnerPro,
@@ -15,6 +16,8 @@ export default function Game() {
   const [winner, setWinner] = useWinnerPro();
   const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
   const [sessionStatus, setSessionStatus] = useSessionStatusPro();
+  const [language, setLanguage] = useLanguagePro();
+
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState();
 
@@ -36,8 +39,9 @@ export default function Game() {
   };
 
   const handleWarnings = () => {
-    setWiki(null);
-    setCurrentPlayer(null);
+    setWiki(wiki);
+    setCurrentPlayer(currentPlayer);
+    setLanguage(language);
     console.log(sessionStatus);
   };
 
@@ -47,7 +51,7 @@ export default function Game() {
       <div>
         {wiki[0] && (
           <Iframe
-            url={`http://en.wikipedia.org/?curid=${wiki[0].pageid}`}
+            url={`http://${language}.wikipedia.org/?curid=${wiki[0].pageid}`}
             width="100%"
             height="450px"
             id="myId"
