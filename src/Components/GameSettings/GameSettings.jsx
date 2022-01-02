@@ -145,6 +145,7 @@ export default function GameSettings() {
         setCurrentPlayer(data[`player${thisPlayerId}`]);
         setOtherPlayer(data[`player${otherPlayerId}`]);
         setWinner(data.winner);
+        setWiki(data.wiki);
         console.log("interval", data);
       } catch (err) {
         console.log(err);

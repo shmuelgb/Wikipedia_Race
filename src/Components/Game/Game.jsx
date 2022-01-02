@@ -45,7 +45,7 @@ export default function Game() {
     <div>
       Game
       <div>
-        {wiki && (
+        {wiki[0] && (
           <Iframe
             url={`http://en.wikipedia.org/?curid=${wiki[0].pageid}`}
             width="100%"
@@ -56,16 +56,16 @@ export default function Game() {
             position="relative"
           />
         )}
-        <button onClick={() => setClaimWin(true)}>I Won!</button>
-        {claimWin && (
-          <input
-            type="text"
-            value={winConformation}
-            onChange={(e) => setWinConformation(e.target.value)}
-          />
-        )}
-        {claimWin && <button onClick={confirmWin}>Confirm</button>}
       </div>
+      <button onClick={() => setClaimWin(true)}>I Won!</button>
+      {claimWin && (
+        <input
+          type="text"
+          value={winConformation}
+          onChange={(e) => setWinConformation(e.target.value)}
+        />
+      )}
+      {claimWin && <button onClick={confirmWin}>Confirm</button>}
     </div>
   );
 }
