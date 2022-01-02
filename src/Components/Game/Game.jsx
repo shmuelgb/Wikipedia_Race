@@ -5,11 +5,13 @@ import {
   useWikiPro,
   useSessionStatusPro,
   useLanguagePro,
+  useSessionIdPro,
 } from "../../Provider/Session_provider";
 import {
   useWinnerPro,
   useCurrentPlayerPro,
 } from "../../Provider/Player_provider";
+import dataBase from "../../Axios/dataBase";
 
 export default function Game() {
   const [wiki, setWiki] = useWikiPro();
@@ -17,31 +19,66 @@ export default function Game() {
   const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
   const [sessionStatus, setSessionStatus] = useSessionStatusPro();
   const [language, setLanguage] = useLanguagePro();
+  const [sessionId, setSessionId] = useSessionIdPro();
 
   const [claimWin, setClaimWin] = useState(false);
-  const [winConformation, setWinConformation] = useState();
+  const [winConformation, setWinConformation] = useState("");
 
   const confirmWin = () => {
     const targetSnippet = wiki[1].snippet;
     let token = winConformation.split(" ");
-    const tokens = [];
-    tokens.push(token[token.length - 1]);
-    tokens.push(token[token.length - 2]);
-    tokens.push(token[token.length - 3]);
-    tokens.push(token[token.length - 4]);
+    console.log("token", token);
+    console.log("targetSnippet", targetSnippet);
 
-    if (tokens.every((token) => targetSnippet.includes(token))) {
-      setWinner(currentPlayer);
-      setSessionStatus("finished");
+    const results = token.filter((token) => {
+      return targetSnippet.includes(token);
+    });
+    console.log("results", results);
+    if (results.length >= 4) {
       console.log("winner", winner);
-    } else console.log("?");
+      setWinner(currentPlayer);
+      updateWinner();
+    } else console.log("try again");
     if (0 > 1) handleWarnings();
   };
+
+  const updateWinner = async () => {
+    try {
+      const { data } = await dataBase.put(`${sessionId}`, {
+        status: "finished",
+        winner: currentPlayer,
+      });
+      console.log("data", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //   const confirmWin = () => {
+  //     const targetSnippet = wiki[1].snippet;
+  //     let token = winConformation.split(" ");
+  //     const tokens = [];
+  //     tokens.push(token[token.length - 1]);
+  //     tokens.push(token[token.length - 2]);
+  //     tokens.push(token[token.length - 3]);
+  //     tokens.push(token[token.length - 4]);
+  //     console.log("tokens", tokens);
+  //     console.log("targetSnippet", targetSnippet);
+
+  //     if (tokens.every((token) => targetSnippet.includes(token))) {
+  //       setWinner(currentPlayer);
+  //       setSessionStatus("finished");
+  //       console.log("winner", winner);
+  //     } else console.log("try again");
+  //     if (0 > 1) handleWarnings();
+  //   };
 
   const handleWarnings = () => {
     setWiki(wiki);
     setCurrentPlayer(currentPlayer);
     setLanguage(language);
+    setSessionStatus(sessionStatus);
+    setSessionId(sessionId);
     console.log(sessionStatus);
   };
 

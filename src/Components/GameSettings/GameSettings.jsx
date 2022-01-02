@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import dataBase from "../../Axios/dataBase";
 import { HeWikiSearch, EnWikiSearch } from "../../Axios/wikiSearch";
 import {
@@ -87,7 +86,7 @@ export default function GameSettings() {
   };
 
   const handleWarnings = () => {
-    console.log(sessionId, sessionStatus, winner, currentPlayer, otherPlayer);
+    console.log(currentPlayer, otherPlayer);
     setLanguage("en");
   };
 
@@ -103,6 +102,7 @@ export default function GameSettings() {
         },
         wiki: wiki,
         winner: null,
+        language: language,
       });
       console.log(data);
       setSessionId(data.id);
@@ -135,11 +135,13 @@ export default function GameSettings() {
     const intervalId = setInterval(async () => {
       try {
         const { data } = await dataBase.get(`/${id}`);
-        setSessionStatus(data.status);
+        if (sessionStatus !== data.status) setSessionStatus(data.status);
         setCurrentPlayer(data[`player${thisPlayerId}`]);
         setOtherPlayer(data[`player${otherPlayerId}`]);
-        setWinner(data.winner);
-        setWiki(data.wiki);
+        if (winner !== data.winner) setWinner(data.winner);
+        if (wiki !== data.wiki) setWiki(data.wiki);
+        if (language !== data.language) setLanguage(data.language);
+        if (sessionId !== data.id) setSessionId(data.id);
         console.log("interval", data);
       } catch (err) {
         console.log(err);
@@ -166,7 +168,7 @@ export default function GameSettings() {
         />
         <h2>Choose the Wikipedia page you want to start from:</h2>
         <label htmlFor="language">Choose language:</label>
-        <select name="language" onClick={handleSetLanguage}>
+        <select name="language" onClick={handleSetLanguage} defaultValue="en">
           <option value="he">Hebrew</option>
           <option value="en">English</option>
         </select>
@@ -183,11 +185,8 @@ export default function GameSettings() {
           onChange={(e) => setTargetTerm(e.target.value)}
         />
         {results[1] && renderSuggestions(1)}
-        {/* <button onClick={() => handleStart("new")}>Go!</button> */}
+        <button onClick={() => handleStart("new")}>Go!</button>
         <br />
-        <Link onClick={() => handleStart("new")} to="/waiting_room">
-          Go!
-        </Link>
       </div>
       <div className="join-game">
         <h1>To Join a game</h1>
