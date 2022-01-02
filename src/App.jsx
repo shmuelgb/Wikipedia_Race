@@ -7,6 +7,8 @@ import WaitingRoom from "./Components/WaitingRoom/WaitingRoom";
 import Game from "./Components/Game/Game";
 import WiningPage from "./Components/WiningPage/WiningPage";
 import Redirect from "./Components/Redirect";
+import Login from "./Components/Login";
+import SignIn from "./Components/SignIn";
 
 import SessionProvider from "./Provider/Session_provider";
 import PlayerProvider from "./Provider/Player_provider";
@@ -19,6 +21,8 @@ function App() {
           <Router>
             <Redirect />
             <Route path="/" exact component={Homepage} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/login" component={Login} />
             <Route path="/game_settings" exact component={GameSettings} />
             <Route path="/waiting_room" exact component={WaitingRoom} />
             <Route path="/game" exact component={Game} />
