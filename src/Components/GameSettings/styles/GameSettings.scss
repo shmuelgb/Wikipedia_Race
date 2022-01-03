@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: space-around;
     height: 70%;
-    overflow: hidden;
 
     h1:first-child {
       margin-bottom: 0;
@@ -49,20 +48,24 @@
       display: flex;
       width: 200px;
       flex-direction: column;
-      height: 200px;
-      background-color: white;
+      max-height: 200px;
+      background-color: $color-light;
       overflow-y: scroll;
 
       &::-webkit-scrollbar {
-        width: 10px;
+        width: 7px;
       }
 
       &::-webkit-scrollbar-track {
-        background-color: darkgrey;
+        background-color: $color-light;
+        background-color: $color-olive-light;
       }
 
       &::-webkit-scrollbar-thumb {
         box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: $color-coral;
+        // background-color: $color-olive-dark;
+        border-radius: 3px;
       }
 
       p {
@@ -105,6 +108,9 @@
       justify-content: flex-start;
       width: 35%;
       min-height: 60vh;
+      .btn {
+        margin-top: 30px;
+      }
     }
   }
 }

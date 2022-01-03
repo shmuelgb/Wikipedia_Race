@@ -182,7 +182,7 @@ export default function GameSettings() {
       } catch (err) {
         console.log(err);
       }
-    }, 5000);
+    }, 2000);
     if (sessionStatus === "finished") {
       clearInterval(intervalId);
     }
@@ -195,7 +195,7 @@ export default function GameSettings() {
   return (
     <div className="game-settings">
       <div className="new-game">
-        <h1>To Start a new game</h1>
+        <h1>Start a new game</h1>
         <input
           placeholder="Enter Your Name"
           type="text"
@@ -206,7 +206,7 @@ export default function GameSettings() {
         <div>
           <label htmlFor="language">Choose language:</label>
           <select name="language" onClick={handleSetLanguage} defaultValue="en">
-            <option value="he">Hebrew</option>
+            <option value="he">עברית</option>
             <option value="en">English</option>
           </select>
         </div>
@@ -241,7 +241,7 @@ export default function GameSettings() {
       </div>
 
       <div className="join-game">
-        <h1>To Join a game</h1>
+        <h1>Join a game</h1>
         <input
           placeholder="Enter your name"
           type="text"

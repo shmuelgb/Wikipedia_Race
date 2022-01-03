@@ -34,7 +34,12 @@
   font-size: 3rem;
 }
 
-.homepage h3 {
-  margin-bottom: 40px;
+.homepage h2 {
+  margin: 40px 0;
+}
+
+.homepage p {
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 /*# sourceMappingURL=Homepage.css.map */

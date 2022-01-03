@@ -12,12 +12,15 @@ export default function Header() {
 
   const handleLogout = () => {
     logout();
+    handleHomepage();
+  };
+  const handleHomepage = () => {
     history.push("/");
   };
   return (
     <header className="header">
-      <img src={logo} alt="logo" />
-      <h2>Wikipedia Race</h2>
+      <img onClick={handleHomepage} src={logo} alt="logo" />
+      <h2 onClick={handleHomepage}>Wikipedia Race</h2>
       {user && (
         <button className="btn" onClick={handleLogout}>
           logout

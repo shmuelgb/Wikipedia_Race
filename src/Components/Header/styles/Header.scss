@@ -12,9 +12,13 @@
   img {
     height: 35px;
     width: 40px;
+    cursor: pointer;
   }
   .btn {
     padding: 5px 10px;
+  }
+  h2 {
+    cursor: pointer;
   }
 }
 @media (min-width: 768px) {

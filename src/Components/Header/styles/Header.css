@@ -18,10 +18,15 @@
 .header img {
   height: 35px;
   width: 40px;
+  cursor: pointer;
 }
 
 .header .btn {
   padding: 5px 10px;
+}
+
+.header h2 {
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

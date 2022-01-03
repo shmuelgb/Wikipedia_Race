@@ -12,11 +12,10 @@ function Homepage() {
       <div className="homepage-content">
         <h1>Welcome to Wikipedia Race!</h1>
         <p>
-          Here you can play against your friends by racing through Wikipedia
-          articles!
+          Here you can play against your friends by racing <br /> through
+          Wikipedia articles!
         </p>
-        <h3>Are You Ready?</h3>
-        {user && <h1>Welcome</h1>}
+        <h2>Are You Ready?</h2>
         {user && (
           <Link className="btn" to="/game_settings">
             Let's Play!
@@ -27,7 +26,6 @@ function Homepage() {
             Login To Continue
           </Link>
         )}
-        {/* <Link to="/game_settings">OK let's Play!</Link> */}
       </div>
     </div>
   );

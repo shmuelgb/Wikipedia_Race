@@ -35,7 +35,6 @@
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 70%;
-  overflow: hidden;
 }
 
 .game-settings .new-game h1:first-child {
@@ -74,22 +73,25 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 200px;
-  background-color: white;
+  max-height: 200px;
+  background-color: #f0dac0;
   overflow-y: scroll;
 }
 
 .game-settings .new-game .suggestions::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 
 .game-settings .new-game .suggestions::-webkit-scrollbar-track {
-  background-color: darkgrey;
+  background-color: #f0dac0;
+  background-color: #7c7d4f;
 }
 
 .game-settings .new-game .suggestions::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f6a970;
+  border-radius: 3px;
 }
 
 .game-settings .new-game .suggestions p {
@@ -150,6 +152,9 @@
             justify-content: flex-start;
     width: 35%;
     min-height: 60vh;
+  }
+  .game-settings .join-game .btn {
+    margin-top: 30px;
   }
 }
 /*# sourceMappingURL=GameSettings.css.map */
