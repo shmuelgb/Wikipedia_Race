@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import "./styles/SignIn.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useHistory } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from "../firebase";
+} from "../../firebase";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -33,8 +34,8 @@ function SignIn() {
   };
 
   return (
-    <div className="register">
-      <div className="register__container">
+    <div className="sign-in">
+      <div className="sign-in__container">
         <input
           type="text"
           className="register__textBox"
@@ -56,18 +57,17 @@ function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button className="register__btn" onClick={register}>
+        <button className="btn" onClick={register}>
           Register
         </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
+        <button className="btn" onClick={signInWithGoogle}>
           Register with Google
         </button>
 
         <div>
-          Already have an account? <Link to="/login">Login</Link> now.
+          Already have an account?
+          <br />
+          <Link to="/login">Login now</Link>
         </div>
       </div>
     </div>

@@ -32,4 +32,19 @@
   @media (max-width: 768px) {
     // font-size: 0.8rem;
   }
+  input {
+    border: none;
+    border-bottom: 1px solid $color-olive-light;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    transition: all 0.1s ease-in-out;
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $color-olive-dark;
+    }
+    &:active {
+      border-bottom: 1px solid $color-olive-dark;
+    }
+  }
 }

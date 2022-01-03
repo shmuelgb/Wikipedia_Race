@@ -32,4 +32,23 @@
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
 }
+
+.App input {
+  border: none;
+  border-bottom: 1px solid #7c7d4f;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.App input:focus {
+  outline: none;
+  border-bottom: 1px solid #3c3d1f;
+}
+
+.App input:active {
+  border-bottom: 1px solid #3c3d1f;
+}
 /*# sourceMappingURL=App.css.map */

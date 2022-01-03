@@ -8,8 +8,8 @@ import WaitingRoom from "./Components/WaitingRoom/WaitingRoom";
 import Game from "./Components/Game/Game";
 import WiningPage from "./Components/WiningPage/WiningPage";
 import Redirect from "./Components/Redirect";
-import Login from "./Components/Login";
-import SignIn from "./Components/SignIn";
+import Login from "./Components/Login/Login";
+import SignIn from "./Components/SignIn/SignIn";
 import Header from "./Components/Header/Header";
 
 import SessionProvider from "./Provider/Session_provider";
