@@ -20,7 +20,7 @@ function Login() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) history.push("/");
+    if (user) history.goBack();
     //TODO:  if user is logged in - update login context and redirect to landing page
   }, [user, loading, history]);
 

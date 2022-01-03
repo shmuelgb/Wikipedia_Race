@@ -181,6 +181,7 @@ export default function GameSettings() {
         <h1>To Start a new game</h1>
         <h2>Please Enter Your name:</h2>
         <input
+          placeholder="Enter Your Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -192,6 +193,7 @@ export default function GameSettings() {
           <option value="en">English</option>
         </select>
         <input
+          placeholder="Enter the page you want to start from"
           type="text"
           value={originTerm}
           onChange={searchOrigin}
@@ -200,6 +202,7 @@ export default function GameSettings() {
         {results[0] && renderSuggestions(0)}
         <h2>Choose The target page:</h2>
         <input
+          placeholder="Enter The page you want to reach"
           type="text"
           value={targetTerm}
           onChange={searchTarget}
@@ -213,11 +216,16 @@ export default function GameSettings() {
         <h1>To Join a game</h1>
         <h2>Please Enter Your name:</h2>
         <input
+          placeholder="Enter your name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <br />
+        <label htmlFor="id">Enter game Id you want to join</label>
         <input
+          placeholder="Enter game Id"
+          name="id"
           type="text"
           value={idToJoin}
           onChange={(e) => setIdToJoin(e.target.value)}

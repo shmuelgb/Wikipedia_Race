@@ -25,7 +25,7 @@ function SignIn() {
   useEffect(() => {
     console.log("user", user);
     if (loading) return;
-    if (user) history.push("/");
+    if (user) history.goBack();
   }, [user, loading, history]);
 
   const handleWarnings = () => {

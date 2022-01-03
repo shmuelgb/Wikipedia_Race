@@ -11,15 +11,16 @@
 -start button
 
 /case join game
-
 - session id input
 -start button
 
 !!!----Waiting-room>>>>>>>>>>>>>>>>>
+>context session
 
 - explanation
 
 !!!----Game>>>>>>>>>>>>>>>>>
+>context session
 
 - wiki Iframe
 - Counter
@@ -28,5 +29,6 @@
 - wining conformation submit button
 
 !!!----wining page>>>>>>>>>>>>>>>>>
-
+>context session
+>player
 - Nice looking page for winner and loser

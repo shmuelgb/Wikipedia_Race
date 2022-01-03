@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/normalize.css";
 import Homepage from "./Components/Homepage/Homepage";
 import GameSettings from "./Components/GameSettings/GameSettings";
 import WaitingRoom from "./Components/WaitingRoom/WaitingRoom";

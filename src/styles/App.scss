@@ -1,0 +1,35 @@
+@import "variables";
+
+.App {
+  text-align: center;
+  font-family: $font-Luxurious-Roman;
+  color: $color-olive-dark;
+  background-color: $color-background;
+  min-height: 100vh;
+
+  a {
+    text-decoration: none;
+    color: $color-olive-dark;
+  }
+
+  .btn {
+    background-color: $color-olive-light;
+    color: $color-brown-light;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background-color: $color-brown-light;
+      color: $color-olive-light;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  @media (max-width: 768px) {
+    // font-size: 0.8rem;
+  }
+}
