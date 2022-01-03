@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
 
 import {
@@ -25,6 +25,15 @@ export default function Game() {
   //state==>
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState("");
+  const [mobile, setMobile] = useState("");
+
+  useEffect(() => {
+    if (window.innerWidth < window.innerHeight) {
+      setMobile(".m");
+    } else {
+      setMobile("");
+    }
+  }, []);
 
   //functions==>
   //verify if the game is over
@@ -75,7 +84,9 @@ export default function Game() {
       <div>
         {wiki[0] && (
           <Iframe
-            url={`https://${language}.wikipedia.org/?curid=${wiki[0].pageid}`}
+            url={`https://${language + mobile}.wikipedia.org/?curid=${
+              wiki[0].pageid
+            }`}
             width="100%"
             height="450px"
             id="myId"

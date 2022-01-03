@@ -168,6 +168,7 @@ export default function GameSettings() {
   };
 
   const syncSession = async (id, thisPlayerId, otherPlayerId) => {
+    if (sessionStatus === "finished") return;
     const intervalId = setInterval(async () => {
       try {
         const { data } = await dataBase.get(`/${id}`);
