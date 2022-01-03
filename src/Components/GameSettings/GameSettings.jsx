@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import "./styles/GameSettings.css";
 import dataBase from "../../Axios/dataBase";
 import { HeWikiSearch, EnWikiSearch } from "../../Axios/wikiSearch";
 import {
@@ -15,7 +16,7 @@ import {
 } from "../../Provider/Session_provider";
 
 export default function GameSettings() {
-  //| STATE===>
+  //| Context Hooks===>
   const [sessionId, setSessionId] = useSessionIdPro();
   const [sessionStatus, setSessionStatus] = useSessionStatusPro();
   const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
@@ -23,14 +24,18 @@ export default function GameSettings() {
   const [winner, setWinner] = useWinnerPro();
   const [language, setLanguage] = useLanguagePro();
 
+  //| STATE===>
   const [wiki, setWiki] = useWikiPro();
   const [originTerm, setOriginTerm] = useState("");
   const [targetTerm, setTargetTerm] = useState("");
   const [results, setResults] = useState([null, null]);
   const [name, setName] = useState("");
   const [idToJoin, setIdToJoin] = useState("");
-  //   const [isNewGame, setIsNewGame] = useIsNewGamePro();
   const [timersId, setTimersId] = useState([]);
+
+  //| REFS===>
+  const originInputRef = useRef();
+  const targetInputRef = useRef();
 
   //| FUNCTIONS===>
 
@@ -40,6 +45,9 @@ export default function GameSettings() {
       getSuggestions(e.target.value, 0);
     }, 500);
     setTimersId([...timersId, timerId]);
+    if (e.target.value === "") {
+      clearResults();
+    }
   };
 
   const searchTarget = (e) => {
@@ -48,6 +56,9 @@ export default function GameSettings() {
       getSuggestions(e.target.value, 1);
     }, 1000);
     setTimersId([...timersId, timerId]);
+    if (e.target.value === "") {
+      clearResults();
+    }
   };
 
   const getSuggestions = async (term, identifier) => {
@@ -63,6 +74,10 @@ export default function GameSettings() {
     }
   };
 
+  const clearResults = () => {
+    setTimeout(() => setResults([null, null]), 250);
+  };
+
   useEffect(() => {
     timersId.forEach((timerId, i) => {
       if (i !== timersId.length - 1) clearTimeout(timerId);
@@ -73,9 +88,9 @@ export default function GameSettings() {
   const renderSuggestions = (identifier) => {
     return results[identifier].map((item) => {
       return (
-        <div key={item.pageid} onClick={() => setWikiValues(item, identifier)}>
+        <p key={item.pageid} onClick={() => setWikiValues(item, identifier)}>
           {item.title}
-        </div>
+        </p>
       );
     });
   };
@@ -86,12 +101,14 @@ export default function GameSettings() {
     if (identifier === 0) {
       setOriginTerm("");
       wikiCopy[0] = item;
+      originInputRef.current.placeholder = item.title;
     } else {
       setTargetTerm("");
       wikiCopy[1] = item;
+      targetInputRef.current.placeholder = item.title;
     }
     setWiki(wikiCopy);
-    console.log("wiki", wiki);
+    clearResults();
   };
 
   const handleStart = (gameType) => {
@@ -176,45 +193,55 @@ export default function GameSettings() {
   };
 
   return (
-    <div>
+    <div className="game-settings">
       <div className="new-game">
         <h1>To Start a new game</h1>
-        <h2>Please Enter Your name:</h2>
         <input
           placeholder="Enter Your Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <h2>Choose the Wikipedia page you want to start from:</h2>
-        <label htmlFor="language">Choose language:</label>
-        <select name="language" onClick={handleSetLanguage} defaultValue="en">
-          <option value="he">Hebrew</option>
-          <option value="en">English</option>
-        </select>
+        <h2>Select Wikipedia articles:</h2>
+        <div>
+          <label htmlFor="language">Choose language:</label>
+          <select name="language" onClick={handleSetLanguage} defaultValue="en">
+            <option value="he">Hebrew</option>
+            <option value="en">English</option>
+          </select>
+        </div>
         <input
-          placeholder="Enter the page you want to start from"
+          placeholder="Start from:"
+          ref={originInputRef}
           type="text"
           value={originTerm}
           onChange={searchOrigin}
-          //   onChange={(e) => setOriginTerm(e.target.value)}
         />
-        {results[0] && renderSuggestions(0)}
-        <h2>Choose The target page:</h2>
+        <div className="suggestions-container">
+          {results[0] && (
+            <div className="suggestions">{renderSuggestions(0)}</div>
+          )}
+        </div>
         <input
-          placeholder="Enter The page you want to reach"
+          placeholder="Finish at:"
+          ref={targetInputRef}
           type="text"
           value={targetTerm}
           onChange={searchTarget}
-          //   onChange={(e) => setTargetTerm(e.target.value)}
         />
-        {results[1] && renderSuggestions(1)}
-        <button onClick={() => handleStart("new")}>Go!</button>
+        <div className="suggestions-container">
+          {results[1] && (
+            <div className="suggestions">{renderSuggestions(1)}</div>
+          )}
+        </div>
+        <button className="btn" onClick={() => handleStart("new")}>
+          Go!
+        </button>
         <br />
       </div>
+
       <div className="join-game">
         <h1>To Join a game</h1>
-        <h2>Please Enter Your name:</h2>
         <input
           placeholder="Enter your name"
           type="text"
@@ -222,7 +249,6 @@ export default function GameSettings() {
           onChange={(e) => setName(e.target.value)}
         />
         <br />
-        <label htmlFor="id">Enter game Id you want to join</label>
         <input
           placeholder="Enter game Id"
           name="id"
@@ -230,7 +256,9 @@ export default function GameSettings() {
           value={idToJoin}
           onChange={(e) => setIdToJoin(e.target.value)}
         />
-        <button onClick={() => handleStart("join")}>Go!</button>
+        <button className="btn" onClick={() => handleStart("join")}>
+          Go!
+        </button>
       </div>
     </div>
   );

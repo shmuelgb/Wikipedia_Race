@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
+.game-settings {
+  height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.game-settings h1 {
+  text-decoration: underline;
+}
+
+.game-settings .new-game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 70%;
+  overflow: hidden;
+}
+
+.game-settings .new-game h1:first-child {
+  margin-bottom: 0;
+}
+
+.game-settings .new-game input:first-child {
+  margin-bottom: 0;
+}
+
+.game-settings .new-game select {
+  border: 1px solid #7c7d4f;
+  color: #3c3d1f;
+  background: #f0dac0;
+  border-radius: 5px;
+  padding: 3px 7px;
+  margin-left: 10px;
+  outline: none;
+}
+
+.game-settings .new-game .suggestions-container {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  position: relative;
+  margin-left: 50px;
+}
+
+.game-settings .new-game .suggestions {
+  border-radius: 5px;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 200px;
+  background-color: white;
+  overflow-y: scroll;
+}
+
+.game-settings .new-game .suggestions::-webkit-scrollbar {
+  width: 10px;
+}
+
+.game-settings .new-game .suggestions::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+.game-settings .new-game .suggestions::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.game-settings .new-game .suggestions p {
+  border-bottom: 1px solid #7c7d4f;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  padding: 3px 7px;
+  cursor: pointer;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
+}
+
+.game-settings .new-game .suggestions p:hover {
+  background-color: #7c7d4f;
+  color: #f0ccb0;
+}
+
+.game-settings .new-game .suggestions p:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.game-settings .join-game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 30%;
+}
+
+@media (min-width: 768px) {
+  .game-settings {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .game-settings .new-game {
+    width: 35%;
+    border-right: 1px solid #7c7d4f;
+    min-height: 60vh;
+  }
+  .game-settings .join-game {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 35%;
+    min-height: 60vh;
+  }
+}
+/*# sourceMappingURL=GameSettings.css.map */

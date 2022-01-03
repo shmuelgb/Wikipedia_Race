@@ -1,0 +1,110 @@
+@import "../../../styles/variables";
+
+.game-settings {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  h1 {
+    text-decoration: underline;
+  }
+
+  .new-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 70%;
+    overflow: hidden;
+
+    h1:first-child {
+      margin-bottom: 0;
+    }
+
+    input:first-child {
+      margin-bottom: 0;
+    }
+
+    select {
+      border: 1px solid $color-olive-light;
+      color: $color-olive-dark;
+      background: $color-light;
+      border-radius: 5px;
+      padding: 3px 7px;
+      margin-left: 10px;
+      outline: none;
+    }
+
+    .suggestions-container {
+      align-self: flex-start;
+      position: relative;
+      margin-left: 50px;
+    }
+
+    .suggestions {
+      border-radius: 5px;
+      position: absolute;
+      display: flex;
+      width: 200px;
+      flex-direction: column;
+      height: 200px;
+      background-color: white;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: darkgrey;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      p {
+        border-bottom: 1px solid $color-olive-light;
+        border-radius: 5px;
+        margin-bottom: 2px;
+        padding: 3px 7px;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+          background-color: $color-olive-light;
+          color: $color-brown-light;
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+  .join-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 30%;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-settings {
+    flex-direction: row;
+    justify-content: center;
+    .new-game {
+      width: 35%;
+      border-right: 1px solid $color-olive-light;
+      min-height: 60vh;
+    }
+    .join-game {
+      justify-content: flex-start;
+      width: 35%;
+      min-height: 60vh;
+    }
+  }
+}
