@@ -28,6 +28,10 @@
   height: 50vh;
 }
 
+.login h1 {
+  text-decoration: underline;
+}
+
 .login .register {
   text-decoration: underline;
 }

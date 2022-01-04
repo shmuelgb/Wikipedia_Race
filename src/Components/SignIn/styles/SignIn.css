@@ -28,6 +28,10 @@
   height: 50vh;
 }
 
+.sign-in h1 {
+  text-decoration: underline;
+}
+
 .sign-in a {
   text-decoration: underline;
 }

@@ -36,6 +36,7 @@ function SignIn() {
   return (
     <div className="sign-in">
       <div className="sign-in__container">
+        <h1>Sign In</h1>
         <input
           type="text"
           name="name"
