@@ -3,4 +3,8 @@
 .waiting-room h1:first-child {
   text-decoration: underline;
 }
+
+.waiting-room h2 {
+  margin-bottom: 5px;
+}
 /*# sourceMappingURL=WaitingRoom.css.map */

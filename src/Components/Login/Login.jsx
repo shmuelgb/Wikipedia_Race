@@ -43,6 +43,7 @@ function Login() {
         <h1>Log In</h1>
         <input
           type="text"
+          name="email"
           className="login__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

@@ -38,13 +38,14 @@ function SignIn() {
       <div className="sign-in__container">
         <input
           type="text"
-          className="register__textBox"
+          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />
         <input
           type="text"
+          name="email"
           className="register__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
