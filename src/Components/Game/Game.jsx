@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
+import "./styles/Game.css";
 
 import {
   useWikiPro,
@@ -78,33 +79,56 @@ export default function Game() {
     console.log(sessionStatus);
   };
 
+  const renderVerification = () => {
+    const direction = language === "en" ? "ltr" : "rtl";
+    return (
+      <div className="verification">
+        <textarea
+          value={winConformation}
+          onChange={(e) => setWinConformation(e.target.value)}
+          cols="20"
+          rows="10"
+          dir={direction}
+          placeholder="To verify your win, copy the first line of the article, and paste
+          here:"
+        ></textarea>
+        <button className="btn" onClick={confirmWin}>
+          Confirm
+        </button>
+      </div>
+    );
+  };
+
   return (
-    <div>
-      Game
-      <div>
+    <div className="game">
+      <div className="control-bar">
+        <div className="objectives">
+          <h2>Origin:</h2>
+          <h3>{wiki[0].title}</h3>
+          <h2>Target:</h2>
+          <h3>{wiki[1].title}</h3>
+        </div>
+        <button className="btn" onClick={() => setClaimWin(!claimWin)}>
+          I Won!
+        </button>
+        {claimWin && renderVerification()}
+      </div>
+      <div className="wiki-window">
         {wiki[0] && (
           <Iframe
             url={`https://${language + mobile}.wikipedia.org/?curid=${
               wiki[0].pageid
             }`}
             width="100%"
-            height="450px"
-            id="myId"
-            className="my-class-name"
+            height="100%"
+            className="iframe"
             display="initial"
             position="relative"
+            frameBorder="0"
+            scrolling=""
           />
         )}
       </div>
-      <button onClick={() => setClaimWin(true)}>I Won!</button>
-      {claimWin && (
-        <input
-          type="text"
-          value={winConformation}
-          onChange={(e) => setWinConformation(e.target.value)}
-        />
-      )}
-      {claimWin && <button onClick={confirmWin}>Confirm</button>}
     </div>
   );
 }

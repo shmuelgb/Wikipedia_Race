@@ -1,0 +1,54 @@
+@import "../../../styles/variables";
+.game {
+  display: flex;
+  height: 95vh;
+
+  .control-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    height: 600px;
+    padding: 20px 10px;
+
+    .objectives {
+      margin-bottom: 10px;
+      h2 {
+        margin-bottom: 5px;
+      }
+      h3 {
+        margin-bottom: 10px;
+      }
+      h3:last-child {
+        padding-bottom: 15px;
+        border-bottom: solid 1px $color-olive-light;
+      }
+    }
+
+    .verification {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 300px;
+      border-bottom: solid 1px $color-olive-light;
+
+      textarea {
+        border: none;
+        resize: none;
+        font-weight: bold;
+        padding: 10px;
+        background-color: $color-light;
+        outline: none;
+      }
+    }
+  }
+
+  .wiki-window {
+    width: 80%;
+    border-left: 1px solid $color-olive-light;
+
+    .iframe {
+    }
+  }
+}

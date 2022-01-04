@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
+.game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 95vh;
+}
+
+.game .control-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  height: 600px;
+  padding: 20px 10px;
+}
+
+.game .control-bar .objectives {
+  margin-bottom: 10px;
+}
+
+.game .control-bar .objectives h2 {
+  margin-bottom: 5px;
+}
+
+.game .control-bar .objectives h3 {
+  margin-bottom: 10px;
+}
+
+.game .control-bar .objectives h3:last-child {
+  padding-bottom: 15px;
+  border-bottom: solid 1px #7c7d4f;
+}
+
+.game .control-bar .verification {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 300px;
+  border-bottom: solid 1px #7c7d4f;
+}
+
+.game .control-bar .verification textarea {
+  border: none;
+  resize: none;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f0dac0;
+  outline: none;
+}
+
+.game .wiki-window {
+  width: 80%;
+  border-left: 1px solid #7c7d4f;
+}
+/*# sourceMappingURL=Game.css.map */
