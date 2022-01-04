@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,OAAO,CAAC,4EAAI;AACZ,OAAO,CAAC,sEAAI;ADAZ,AACE,aADW,CACX,EAAE,AAAA,YAAY,CAAC;EACb,eAAe,EAAE,SAAS;CAC3B",
+    "sources": [
+        "WaitingRoom.scss",
+        "../../../styles/_variables.scss"
+    ],
+    "names": [],
+    "file": "WaitingRoom.css"
+}

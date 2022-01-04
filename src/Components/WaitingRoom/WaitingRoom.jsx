@@ -1,23 +1,15 @@
 import React from "react";
+import "./styles/WaitingRoom.css";
 import { useSessionIdPro } from "../../Provider/Session_provider";
 
 export default function WaitingRoom() {
-  const [sessionId, setSessionId] = useSessionIdPro();
-
-  const displayId = () => {
-    if (0 > 1) setSessionId(sessionId);
-    return (
-      <p>tell your rival to enter the number {sessionId} as the session Id</p>
-    );
-  };
+  const [sessionId] = useSessionIdPro();
 
   return (
-    <div>
-      WaitingRoom
-      <br />
-      {sessionId && displayId()}
-      <br />
-      ***Game Explanation***
+    <div className="waiting-room">
+      <h1>WaitingRoom</h1>
+      <h3>Tell your rival to enter this number as the session Id:</h3>
+      <h1>{sessionId}</h1>
     </div>
   );
 }
