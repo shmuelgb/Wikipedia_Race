@@ -114,6 +114,10 @@
           transform: scale(0.95);
 }
 
+.game-settings .new-game .btn {
+  margin-bottom: 5px;
+}
+
 .game-settings .join-game {
   display: -webkit-box;
   display: -ms-flexbox;
