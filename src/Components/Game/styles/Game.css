@@ -4,7 +4,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 95vh;
+  min-height: 95vh;
 }
 
 .game .control-bar {
@@ -70,5 +70,69 @@
 .game .wiki-window {
   width: 80%;
   border-left: 1px solid #7c7d4f;
+}
+
+@media (max-width: 768px) {
+  .game {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .game .control-bar {
+    width: 100%;
+    min-height: 95vh;
+  }
+  .game .wiki-window {
+    width: 100%;
+    border-left: none;
+    height: 86vh;
+  }
+  .game .down-chevron {
+    margin-top: 5px;
+    height: 30px;
+    color: #5c5f30;
+    font-size: 2rem;
+  }
+  .game .down-chevron .chevron {
+    -webkit-animation: down 1.5s infinite;
+            animation: down 1.5s infinite;
+  }
+  @-webkit-keyframes down {
+    20% {
+      -webkit-transform: translateY(10px);
+              transform: translateY(10px);
+    }
+    30% {
+      -webkit-transform: translateY(10px);
+              transform: translateY(10px);
+    }
+    60% {
+      -webkit-transform: translateY(5px);
+              transform: translateY(5px);
+    }
+    90% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  }
+  @keyframes down {
+    20% {
+      -webkit-transform: translateY(10px);
+              transform: translateY(10px);
+    }
+    30% {
+      -webkit-transform: translateY(10px);
+              transform: translateY(10px);
+    }
+    60% {
+      -webkit-transform: translateY(5px);
+              transform: translateY(5px);
+    }
+    90% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+  }
 }
 /*# sourceMappingURL=Game.css.map */

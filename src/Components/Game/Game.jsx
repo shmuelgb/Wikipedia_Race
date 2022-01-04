@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
 import "./styles/Game.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+
 import {
   useWikiPro,
   useSessionStatusPro,
@@ -27,6 +30,12 @@ export default function Game() {
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState("");
   const [mobile, setMobile] = useState("");
+
+  //variables==>
+  const englishExplanation =
+    "To verify your win, copy the first line of the article, and paste here:";
+  const hebrewExplanation =
+    "כדי לאמת את הניצחון, יש להעתיק את השורה הראשונה של הערך, ולהדביק כאן:";
 
   useEffect(() => {
     if (window.innerWidth < window.innerHeight) {
@@ -89,8 +98,10 @@ export default function Game() {
           cols="20"
           rows="10"
           dir={direction}
-          placeholder="To verify your win, copy the first line of the article, and paste
-          here:"
+          placeholder={
+            language === "en" ? englishExplanation : hebrewExplanation
+          }
+          autoFocus
         ></textarea>
         <button className="btn" onClick={confirmWin}>
           Confirm
@@ -99,20 +110,35 @@ export default function Game() {
     );
   };
 
+  const scrollDown = () => {
+    window.scrollTo(0, window.innerHeight);
+  };
+
   return (
     <div className="game">
       <div className="control-bar">
-        <div className="objectives">
-          <h2>Origin:</h2>
-          <h3>{wiki[0].title}</h3>
-          <h2>Target:</h2>
-          <h3>{wiki[1].title}</h3>
-        </div>
+        {wiki[0] && (
+          <div className="objectives">
+            <h2>Origin:</h2>
+            <h3>{wiki[0].title}</h3>
+            <h2>Target:</h2>
+            <h3>{wiki[1].title}</h3>
+          </div>
+        )}
         <button className="btn" onClick={() => setClaimWin(!claimWin)}>
           I Won!
         </button>
         {claimWin && renderVerification()}
       </div>
+      {mobile && (
+        <div className="down-chevron">
+          <FontAwesomeIcon
+            onClick={scrollDown}
+            className="chevron"
+            icon={faAngleDoubleDown}
+          />
+        </div>
+      )}
       <div className="wiki-window">
         {wiki[0] && (
           <Iframe
