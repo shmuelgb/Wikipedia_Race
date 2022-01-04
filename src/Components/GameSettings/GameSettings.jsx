@@ -183,7 +183,7 @@ export default function GameSettings() {
       } catch (err) {
         console.log(err);
       }
-    }, 5000);
+    }, 2000);
     if (sessionStatus === "finished") {
       clearInterval(intervalId);
     }

@@ -111,7 +111,10 @@ export default function Game() {
   };
 
   const scrollDown = () => {
-    window.scrollTo(0, window.innerHeight);
+    window.scroll({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
   };
 
   return (
