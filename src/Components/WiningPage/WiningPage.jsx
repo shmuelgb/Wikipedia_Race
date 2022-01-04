@@ -1,17 +1,17 @@
 import React from "react";
+import "./styles/WiningPage.css";
 import { useWinnerPro } from "../../Provider/Player_provider";
 
 export default function WiningPage() {
-  const [winner, setWinner] = useWinnerPro();
+  const [winner] = useWinnerPro();
 
   const displayWinner = () => {
-    if (0 > 1) setWinner(winner);
-    return <h1>Player {winner.name} Wom!</h1>;
+    return <h1>Player {winner.name} Wom!!!</h1>;
   };
 
   return (
-    <div>
-      WiningPage
+    <div className="WiningPage">
+      <div className="WiningPage-background"></div>
       {winner && displayWinner()}
     </div>
   );

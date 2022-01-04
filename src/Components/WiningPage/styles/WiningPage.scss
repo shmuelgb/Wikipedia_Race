@@ -1,0 +1,26 @@
+.WiningPage {
+  position: relative;
+  height: 60vh;
+
+  h1 {
+    text-decoration: underline;
+    font-size: 3rem;
+  }
+
+  .WiningPage-background {
+    background: url(./trophy.png) no-repeat center center/ contain;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50vh;
+    width: 100%;
+    z-index: 0;
+    opacity: 0.4;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+}
