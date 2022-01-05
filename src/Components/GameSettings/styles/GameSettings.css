@@ -165,5 +165,6 @@
 
 .loading {
   opacity: 0.6;
+  border: none !important;
 }
 /*# sourceMappingURL=GameSettings.css.map */

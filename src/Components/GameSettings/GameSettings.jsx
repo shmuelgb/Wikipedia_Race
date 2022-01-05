@@ -182,11 +182,12 @@ export default function GameSettings() {
         if (wiki !== data.wiki) setWiki(data.wiki);
         if (language !== data.language) setLanguage(data.language);
         if (sessionId !== data.id) setSessionId(data.id);
+        if (sessionStatus !== data.status) setSessionStatus(data.status);
         console.log("interval", data);
       } catch (err) {
         console.log(err);
       }
-    }, 2000);
+    }, 3000);
     if (sessionStatus === "finished") {
       clearInterval(intervalId);
     }
@@ -199,7 +200,7 @@ export default function GameSettings() {
   return (
     <div className={`game-settings ${isLoading}`}>
       {isLoading && <div className="spinner"></div>}
-      <div className="new-game">
+      <div className={`new-game ${isLoading}`}>
         <h1>Start a new game</h1>
         <input
           placeholder="Enter Your Name"
@@ -211,7 +212,11 @@ export default function GameSettings() {
         <h2>Select Wikipedia articles:</h2>
         <div>
           <label htmlFor="language">Choose language:</label>
-          <select name="language" onClick={handleSetLanguage} defaultValue="en">
+          <select
+            name="language"
+            onChange={handleSetLanguage}
+            defaultValue="en"
+          >
             <option value="he">עברית</option>
             <option value="en">English</option>
           </select>

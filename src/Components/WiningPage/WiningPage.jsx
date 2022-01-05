@@ -6,7 +6,7 @@ export default function WiningPage() {
   const [winner] = useWinnerPro();
 
   const displayWinner = () => {
-    return <h1>Player {winner.name} Wom!!!</h1>;
+    return <h1>Player {winner.name} Won!!!</h1>;
   };
 
   return (

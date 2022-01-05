@@ -8,7 +8,6 @@ import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 import {
   useWikiPro,
-  useSessionStatusPro,
   useLanguagePro,
   useSessionIdPro,
 } from "../../Provider/Session_provider";
@@ -20,17 +19,17 @@ import dataBase from "../../Axios/dataBase";
 
 export default function Game() {
   //context Hooks==>
-  const [wiki, setWiki] = useWikiPro();
+  const [wiki] = useWikiPro();
   const [winner, setWinner] = useWinnerPro();
-  const [currentPlayer, setCurrentPlayer] = useCurrentPlayerPro();
-  const [sessionStatus, setSessionStatus] = useSessionStatusPro();
-  const [language, setLanguage] = useLanguagePro();
-  const [sessionId, setSessionId] = useSessionIdPro();
+  const [currentPlayer] = useCurrentPlayerPro();
+  const [language] = useLanguagePro();
+  const [sessionId] = useSessionIdPro();
 
   //state==>
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState("");
   const [mobile, setMobile] = useState("");
+  const [isLoading, setIsLoading] = useState("");
   // const audio = new Audio(music);
   // audio.play();
 
@@ -60,12 +59,23 @@ export default function Game() {
       return targetSnippet.includes(token);
     });
     console.log("results", results);
-    if (results.length >= 4) {
+    verifyWin(results);
+  };
+
+  const verifyWin = (results) => {
+    if (language === "he" && results.length >= 2) {
       console.log("winner", winner);
+      setIsLoading("loading");
       setWinner(currentPlayer);
       updateWinner();
-    } else console.log("try again");
-    if (0 > 1) handleWarnings();
+    } else if (language === "en" && results.length >= 3) {
+      console.log("winner", winner);
+      setIsLoading("loading");
+      setWinner(currentPlayer);
+      updateWinner();
+    } else {
+      console.log("try again");
+    }
   };
 
   //update the winner in the database
@@ -79,16 +89,6 @@ export default function Game() {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  //handle warnings
-  const handleWarnings = () => {
-    setWiki(wiki);
-    setCurrentPlayer(currentPlayer);
-    setLanguage(language);
-    setSessionStatus(sessionStatus);
-    setSessionId(sessionId);
-    console.log(sessionStatus);
   };
 
   const renderVerification = () => {
@@ -109,6 +109,7 @@ export default function Game() {
         <button className="btn" onClick={confirmWin}>
           Confirm
         </button>
+        {isLoading && <div className="spinner"></div>}
       </div>
     );
   };
