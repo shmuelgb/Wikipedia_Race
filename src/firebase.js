@@ -23,7 +23,7 @@ import {
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyASSArmwf3gnQWl1r1u5NXZ7Nb5vN5mdgE",
-  authDomain: "sad-wescoff-918f8d.netlify",
+  authDomain: "wikipedia-race.firebaseapp.com",
   projectId: "wikipedia-race",
   storageBucket: "wikipedia-race.appspot.com",
   messagingSenderId: "559659395632",
