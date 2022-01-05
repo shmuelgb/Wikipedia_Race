@@ -32,6 +32,7 @@ export default function GameSettings() {
   const [name, setName] = useState("");
   const [idToJoin, setIdToJoin] = useState("");
   const [timersId, setTimersId] = useState([]);
+  const [isLoading, setIsLoading] = useState("");
 
   //| REFS===>
   const originInputRef = useRef();
@@ -112,6 +113,7 @@ export default function GameSettings() {
   };
 
   const handleStart = (gameType) => {
+    setIsLoading("loading");
     setCurrentPlayer(name);
     if (gameType === "new") {
       startNewGame();
@@ -151,6 +153,7 @@ export default function GameSettings() {
 
   //Join an existing game
   const joinGame = async () => {
+    setIsLoading("loading");
     try {
       const { data } = await dataBase.put(idToJoin, {
         status: "active",
@@ -194,7 +197,8 @@ export default function GameSettings() {
   };
 
   return (
-    <div className="game-settings">
+    <div className={`game-settings ${isLoading}`}>
+      {isLoading && <div className="spinner"></div>}
       <div className="new-game">
         <h1>Start a new game</h1>
         <input

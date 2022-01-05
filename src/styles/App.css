@@ -52,4 +52,38 @@
 .App input:active {
   border-bottom: 1px solid #3c3d1f;
 }
+
+.App .spinner {
+  position: absolute;
+  border: 7px solid #7c7d4f;
+  border-top: 7px solid #f6a970;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+  z-index: 10;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
 /*# sourceMappingURL=App.css.map */

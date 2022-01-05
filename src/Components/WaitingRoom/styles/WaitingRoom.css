@@ -7,4 +7,10 @@
 .waiting-room h2 {
   margin-bottom: 5px;
 }
+
+.waiting-room .spinner {
+  position: static;
+  margin: 0 auto;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=WaitingRoom.css.map */

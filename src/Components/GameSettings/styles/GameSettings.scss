@@ -1,6 +1,7 @@
 @import "../../../styles/variables";
 
 .game-settings {
+  position: relative;
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -116,4 +117,7 @@
       }
     }
   }
+}
+.loading {
+  opacity: 0.6;
 }
