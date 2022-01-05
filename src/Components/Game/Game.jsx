@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Iframe from "react-iframe";
 import "./styles/Game.css";
+// import music from "./styles/meditate.mp3";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
@@ -30,6 +31,8 @@ export default function Game() {
   const [claimWin, setClaimWin] = useState(false);
   const [winConformation, setWinConformation] = useState("");
   const [mobile, setMobile] = useState("");
+  // const audio = new Audio(music);
+  // audio.play();
 
   //variables==>
   const englishExplanation =
