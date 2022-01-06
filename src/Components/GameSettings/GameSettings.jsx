@@ -113,14 +113,21 @@ export default function GameSettings() {
   };
 
   const handleStart = (gameType) => {
-    setIsLoading("loading");
     setCurrentPlayer(name);
     if (gameType === "new") {
-      startNewGame();
+      if (checkFilled()) {
+        startNewGame();
+        setIsLoading("loading");
+      }
     } else {
       joinGame();
     }
     if (false) handleWarnings();
+  };
+
+  // check if all fields are filled
+  const checkFilled = () => {
+    return wiki[0] && wiki[1] && name;
   };
 
   const handleWarnings = () => {

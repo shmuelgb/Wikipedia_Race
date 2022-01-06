@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
 .header {
   height: 50px;
-  background-color: #f6a970;
+  background-color: rgba(246, 169, 112, 0.9);
   padding: 4px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
