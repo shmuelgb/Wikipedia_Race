@@ -13,6 +13,8 @@ The app creates and updates game sessions on back server (Mock API) and uses it 
 
 https://sad-wescoff-918f8d.netlify.app/
 
+**Tip: you can simulate second player by opening another tab!**
+
 ## Technologies used in this project:
 
 ### Libraries
