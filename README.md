@@ -9,6 +9,10 @@ Wikipedia Race is a web app which enables the users to play online live Wikipedi
 
 The app creates and updates game sessions on back server (Mock API) and uses it to sync session details between the users.
 
+## Visit Live Demo:
+
+https://sad-wescoff-918f8d.netlify.app/
+
 ## Technologies used in this project:
 
 ### Libraries
