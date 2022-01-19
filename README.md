@@ -7,7 +7,7 @@ through Wikipedia articles!
 
 Wikipedia Race is a web app which enables the users to play online live Wikipedia race with each other.
 
-The app creates and updates game sessions on back server (Mock API) and uses it to sync session details between the users.
+The app creates and updates game sessions on back server, and uses it to sync session details between the users.
 
 ## Visit Live Demo:
 
