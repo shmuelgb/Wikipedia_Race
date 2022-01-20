@@ -15,6 +15,7 @@ export default function WaitingRoom() {
         Get from the origin to the target Wikipedia articles, using inner page
         links only
       </p>
+      <h4>Waiting for the other player to join the race!</h4>
       <div className="spinner"></div>
     </div>
   );
