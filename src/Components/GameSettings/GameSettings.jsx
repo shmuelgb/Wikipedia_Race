@@ -262,15 +262,15 @@ export default function GameSettings() {
         <h1>Join a game</h1>
         <input
           placeholder="Enter your name"
-          type="tel"
           value={name}
+          type="text"
           onChange={(e) => setName(e.target.value)}
         />
         <br />
         <input
           placeholder="Enter game Id"
           name="id"
-          type="text"
+          type="tel"
           value={idToJoin}
           onChange={(e) => setIdToJoin(e.target.value)}
         />
